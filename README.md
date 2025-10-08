@@ -13,8 +13,8 @@ Simple CRUD API for Student Objects with JPA (Hibernate)
     - OR download zip.
 - Open the project in VS Code.
 - This project is built to run with jdk 21.
-- [Dependencies](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/7142cb123bc1444fb579ece9735062f1c3a15a86/pom.xml#L33) to JPA and Postgres in addition to the usual Spring Web. JPA handles the persistence, Postgresql is the database to be used.
-- [`/src/main/resources/application.properties`](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/6b2860c4ad01ca46b6b62852ca966bfadc8dfc6a/src/main/resources/application.properties) This file has the configuration for the PostgreSQL database to use for the API.
+- [Dependencies](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/e30190792a4c2d9c9eca5f951a2276c90cb02e6c/pom.xml#L32) to JPA and Postgres in addition to the usual Spring Web. JPA handles the persistence, Postgresql is the database to be used.
+- [`/src/main/resources/application.properties`](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/04eef4b02c55bb9d5b363fb189d47651bf4e9da3/src/main/resources/application.properties) This file has the configuration for the PostgreSQL database to use for the API.
   - You MUST have the database up and running before running the project!
     - Login to your neon.tech account.
     - Locate your database project.
