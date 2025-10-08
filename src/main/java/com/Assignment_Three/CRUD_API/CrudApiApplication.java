@@ -1,0 +1,13 @@
+package com.Assignment_Three.CRUD_API;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CrudApiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CrudApiApplication.class, args);
+	}
+
+}
