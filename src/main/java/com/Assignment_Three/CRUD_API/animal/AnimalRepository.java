@@ -7,15 +7,15 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
+
+    @Query(value = "select * from animals a where a.name like %?1% ", nativeQuery = true)
     List<Animal> getAnimalsByName(String name);
 
     @Query(value = "select * from animals a where a.age >= ?1", 
     nativeQuery = true)
-    List<Animal> getAnimalsByAge(double age);
+    List<Animal> getAnimalsByAge(int age);
 
-    List<Animal> getAnimalsByWeight(double age);
-
-    List<Animal> getAnimalsByDescription(String description);
+    List<Animal> getAnimalsByWeight(double weight);
 
     List<Animal> getAnimalsByGender(String gender);
 }

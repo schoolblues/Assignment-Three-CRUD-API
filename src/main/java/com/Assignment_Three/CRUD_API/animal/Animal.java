@@ -16,7 +16,6 @@ public class Animal {
 
     @Column(nullable = false)
     private String  name;
-    private String  description;
     private String  gender;
 
     @Column(nullable = false)
@@ -26,18 +25,16 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(Long animalId, String name, String description, String gender, double age, double weight) {
+    public Animal(Long animalId, String name, String gender, double age, double weight) {
         this.animalId       = animalId;
         this.name           = name;
-        this.description    = description;
         this.gender         = gender;
         this.age            = age;
         this.weight         = weight;
     }
 
-    public Animal(String name, String description, String gender, double age, double weight) {
+    public Animal(String name, String gender, double age, double weight) {
         this.name           = name;
-        this.description    = description;
         this.gender         = gender;
         this.age            = age;
         this.weight         = weight;
@@ -57,14 +54,6 @@ public class Animal {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getGender() {

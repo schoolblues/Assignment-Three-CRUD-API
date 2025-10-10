@@ -38,27 +38,14 @@ public class AnimalController {
         }
     }
 
-    @GetMapping("/animals/description")
-    public Object getAnimalsByDescription(@RequestParam String description) {
-        if (description != null) {
-            return animalService.getAnimalsByDescription(description);
-        } else {
-            return animalService.getAllAnimals();
-        }
-    }
-
-        @GetMapping("/animals/gender")
+    @GetMapping("/animals/gender/{gender}")
     public Object getAnimalsByGender(@RequestParam String gender) {
-        if (gender != null) {
-            return animalService.getAnimalsByGender(gender);
-        } else {
-            return animalService.getAllAnimals();
-        }
+        return animalService.getAnimalsByGender(gender);
     }
 
     @GetMapping("/animals/weight")
-    public Object getAnimalsByWeight(@RequestParam double weight) {
-        return animalService.getAnimalsByWeight(weight);
+    public Object getAnimalsByWeight(@RequestParam double key) {
+        return animalService.getAnimalsByWeight(key);
     }
 
     /**
@@ -68,7 +55,7 @@ public class AnimalController {
      * @return list of animals with an age above the threshold
      */
     @GetMapping("/animals/age")
-    public Object getAnimalsByAge(@RequestParam(name = "age", defaultValue = "100") double age) {
+    public Object getAnimalsByAge(@RequestParam(name = "age", defaultValue = "100") int age) {
         return new ResponseEntity<>(animalService.getAnimalsByAge(age), HttpStatus.OK);
     }
 
