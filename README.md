@@ -1,5 +1,5 @@
 # Assignment-Three-CRUD-API
-Simple CRUD API for Student Objects with JPA (Hibernate)
+Simple CRUD API for Animal Objects with JPA (Hibernate)
 
 ### Version
 1.0.0
@@ -15,91 +15,67 @@ Simple CRUD API for Student Objects with JPA (Hibernate)
 - This project is built to run with jdk 21.
 - [Dependencies](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/e30190792a4c2d9c9eca5f951a2276c90cb02e6c/pom.xml#L32) to JPA and Postgres in addition to the usual Spring Web. JPA handles the persistence, Postgresql is the database to be used.
 - [`/src/main/resources/application.properties`](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/04eef4b02c55bb9d5b363fb189d47651bf4e9da3/src/main/resources/application.properties) This file has the configuration for the PostgreSQL database to use for the API.
-  - You MUST have the database up and running before running the project!
-    - Login to your neon.tech account.
-    - Locate your database project.
-    - On the project dashboard, click on "Connect" and select Java.
-    - Copy the connection string provided.
-    - Paste it as a value for the property `spring.datasource.url`. No quotation marks.
 - Build and run the main class. You should see a new table created in the Neon database.
-## Notes
-### Java - [Spring ORM with JPA and Hibernate](https://medium.com/@burakkocakeu/jpa-hibernate-and-spring-data-jpa-efa71feb82ac)
-- We are using ORM (Object-Relational Mapping) to deal with databases. This is a technique that allows us to interact with a relational database using object-oriented programming principles.
-- JPA (Jakarta Persistence, formerly Java Persistence API) is a specification that defines ORM standards in Java. It provides an abstraction layer for ORM frameworks to make concrete implementations.
-- Hibernate: Hibernate is a popular ORM framework that implements JPA. It simplifies database operations by mapping Java objects to database tables and handling queries efficiently.
-Spring ORM allows seamless integration of Hibernate and JPA, making database interactions more manageable and reducing boilerplate code.
-### StudentX Java classes have different purposes: Separation of concerns!
-- [Entity](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/6b2860c4ad01ca46b6b62852ca966bfadc8dfc6a/src/main/java/com/csc340/crud_jpa_demo/student/Student.java#L9)
-  - The Student class is annotated as an `@Entity `. This is used to map class attributes to database tables and SQL types.
-  - We also annotated with `@Table` to give Hibernate directions to use this specific table name. This is optional but it helps with naming conventions.
-  - Any Entity must have at least one attribute that is annotated as an `@Id`. In our case it's conveniently the `studentId` attribute.
-    - We are also using an autogeneration strategy for the ID. This way we are not manually assigning IDs to our students. This is optional.
-       - For this reason, we also added a constructor to make a Student without an ID.
-  - An Entity must have a no-argument constructor.
-- [Repository](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/6b2860c4ad01ca46b6b62852ca966bfadc8dfc6a/src/main/java/com/csc340/crud_jpa_demo/student/StudentRepository.java)
-  - We are using an extension of the JPA Repository that comes with prebuilt database operations such as select all, select by id, select by any other reference, insert, delete, etc.
-  - Annotate it as a `@Repository`.
-  - We parametrize this using our object and its ID type.
-    - `public interface StudentRepository extends JpaRepository<Student, Long>` => We want to apply the JPA repository operations on the `Student` type. The `Student` has an ID of type `long`.
-  - If we need special database queries that are not the standard ones mentioned above, we can create [a method with a special purpose query](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/6b2860c4ad01ca46b6b62852ca966bfadc8dfc6a/src/main/java/com/csc340/crud_jpa_demo/student/StudentRepository.java#L17) as shown. This is an interface so no implementation body.
-- [Service](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/6b2860c4ad01ca46b6b62852ca966bfadc8dfc6a/src/main/java/com/csc340/crud_jpa_demo/student/StudentService.java)
-  - Annotated as a `@Service`.
-  - It is the go-between from controller to database. In here we define what functions we need from the repository. A lot of the functions are default functions that our repository inherits from JPA (save, delete, findAll, findByX), some of them are custom made (getHonorsStudents, getStudentsByName).
-  - It asks the repository to perform SQL queries.
-  - The Repository class is [`@Autowired`](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/6b2860c4ad01ca46b6b62852ca966bfadc8dfc6a/src/main/java/com/csc340/crud_jpa_demo/student/StudentService.java#L15). This is for managing the dependency to the repository. Do not use a constructor to make a Repository object, you will get errors.
-- [Rest Controller](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/6b2860c4ad01ca46b6b62852ca966bfadc8dfc6a/src/main/java/com/csc340/crud_jpa_demo/student/StudentController.java#L15)
-  - Annotated as a `@RestController`.
-  - It asks the Service class to perform data access functions.
-  - The Service class is [`@Autowired`](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/6b2860c4ad01ca46b6b62852ca966bfadc8dfc6a/src/main/java/com/csc340/crud_jpa_demo/student/StudentController.java#L18) here as well :)
 
 ## API Endpoints
-Base URL: [`http://localhost:8080/students`](http://localhost:8080/students)
+Base URL: [`http://localhost:8080/animals`](http://localhost:8080/animals)
 
 
-1. ### [`/`](http://localhost:8080/students) (GET)
-Gets a list of all Students in the database.
+1. ### [`/`](http://localhost:8080/animals) (GET)
+Gets a list of all Animals in the database.
 
-#### Response - A JSON array of Student objects.
+#### Response - A JSON array of Animal objects.
 
- ```
+```
 [
   {
-    "studentId": 1,
-    "name": "John Doe",
-    "email": "jd@uncg.edu",
-    "major": "Computer Science",
-    "gpa": 3.5
+    "animalId": 0,
+    "name": "Rufus",
+    "description": "Furry, with brown spots\t",
+    "gender": "Male",
+    "age": 17.0,
+    "weight": 175.0
   },
   {
-    "studentId": 2,
-    "name": "Jane Smith",
-    "email": "js@uncg.edu",
-    "major": "Mathematics",
-    "gpa": 3.8
+    "animalId": 1,
+    "name": "Lizz",
+    "description": "Pine needle green scales",
+    "gender": "Female",
+    "age": 123.0,
+    "weight": 250.0
+  },
+  {
+    "animalId": 6,
+    "name": "Sakura",
+    "description": "Pink and White Feathers",
+    "gender": "Female",
+    "age": 110.0,
+    "weight": 8.0
   }
 ]
 ```
 
-2. ### [`/{studentId}`](http://localhost:8080/students/1) (GET)
-Gets an individual Student in the system. Each Student is identified by a numeric `studentId`
+2. ### [`/{animalId}`](http://localhost:8080/animals/1) (GET)
+Gets an individual Animal in the system. Each Animal is identified by a numeric `animalId`
 
 #### Parameters
-- Path Variable: `studentId` &lt;Long &gt; - REQUIRED
+- Path Variable: `animalId` &lt;Long &gt; - REQUIRED
 
-#### Response - A single Student
+#### Response - A single Animal
 
 ```
-  {
-    "studentId": 1,
-    "name": "John Doe",
-    "email": "jd@uncg.edu",
-    "major": "Computer Science",
-    "gpa": 3.5
-  }
+{
+  "animalId": 1,
+  "name": "Lizz",
+  "description": "Pine needle green scales",
+  "gender": "Female",
+  "age": 123.0,
+  "weight": 250.0
+}
 ```
 
-3. ### [`/name`](http://localhost:8080/students/name?key=jo) (GET)
-Gets a list of students with a name that contains the given string.
+3. ### [`/name`](http://localhost:8080/animals/name?key=jo) (GET)
+Gets a list of animals with a name that contains the given string.
 
 #### Parameters
 - query parameter: `search` &lt; String &gt; - REQUIRED
@@ -109,133 +85,136 @@ Gets a list of students with a name that contains the given string.
 ```
 [
   {
-    "studentId": 1,
-    "name": "John Doe",
-    "email": "jd@uncg.edu",
-    "major": "Computer Science",
-    "gpa": 3.5
+    "animalId": 0,
+    "name": "Rufus",
+    "description": "Furry, with brown spots\t",
+    "gender": "Male",
+    "age": 17.0,
+    "weight": 175.0
   }
 ]
 ```
 
-4. ### [`/major/{major}`](http://localhost:8080/students/major/mathematics) (GET)
-Gets a list of students for a named major.
+4. ### [`/weight`](http://localhost:8080/animals/weight?key=175) (GET)
+Gets an animal based on their weight.
 
 #### Parameters
-- path variable: `major` &lt; String &gt; - REQUIRED
+- path variable: `weight` &lt; Double &gt; - REQUIRED
 
-#### Response - A JSON array of Student objects.
+#### Response - A JSON array of animal objects.
 
 ```
 [
   {
-    "studentId": 2,
-    "name": "Jane Smith",
-    "email": "js@uncg.edu",
-    "major": "Mathematics",
-    "gpa": 3.8
+    "animalId": 0,
+    "name": "Rufus",
+    "gender": "Male",
+    "age": 17.0,
+    "weight": 175.0
   }
 ]
 ```
-5. ### [`/honors`](http://localhost:8080/students/honors?gpa=3.5) (GET)
-Gets a list of students with a GPA meeting the Threshold.
+5. ### [`/age`](http://localhost:8080/animals/old?age=100) (GET)
+Gets a list of animals with a age meeting the Threshold.
 
 #### Parameters
-- query parameter: `gpa` &lt;Double&gt; - REQUIRED
+- query parameter: `age` &lt;Int&gt; - REQUIRED
 
-#### Response - A JSON array of Student objects.
+#### Response - A JSON array of Animal objects.
 
 ```
 [
   {
-    "studentId": 1,
-    "name": "Alice Smith",
-    "major": "CSC",
-    "gpa": 3.88
-  },
-  {
-    "studentId": 7,
-    "name": "John Doe",
-    "major": "CSC",
-    "gpa": 3.65
+    "animalId": 1,
+    "name": "Lizz",
+    "description": "Pine needle green scales",
+    "gender": "Female",
+    "age": 123.0,
+    "weight": 250.0
   }
 ]
 ```
-6. ### [`/`](http://localhost:8080/students) (POST)
-Create  a new Student entry
+6. ### [`/`](http://localhost:8080/animals) (POST)
+Create  a new Animal entry
 
 #### Request Body
-A student object. Note the object does not include an ID as this is autogenerated.
-```
-{
-  "name":"Bob Testing",
-  "email":"bt@test.edu",
-  "major":"Computer Science",
-  "gpa":3.44
-}
-```
-#### Response - The newly created Student.
-
+A animal object. Note the object does not include an ID as this is autogenerated.
 ```
   {
-    "studentId": 3,
-    "name": "Bob Testing",
-    "email": "bt@test.edu",
-    "major": "Computer Science",
-    "gpa": 3.44
+    "name": "Sakura",
+    "description": "Pink and White Feathers",
+    "gender": "Female",
+    "age": 110.0,
+    "weight": 8.0
   }
 ```
+#### Response - The newly created Animal.
 
-7. ### [`/{studentId}`](http://localhost:8080/students/3) (PUT)
-Update an existing Student.
+```
+{
+  "animalId": 2,
+  "name": "Sakura",
+  "description": "Pink and White Feathers",
+  "gender": "Female",
+  "age": 110.0,
+  "weight": 8.0
+}
+```
+
+7. ### [`/{animalId}`](http://localhost:8080/animals/3) (PUT)
+Update an existing Animal.
 
 #### Parameters
-- Path Variable: `studentId` &lt;integer&gt; - REQUIRED
+- Path Variable: `animalId` &lt;integer&gt; - REQUIRED
 
 #### Request Body
-A student object with the updates.
+A animal object with the updates.
+```
+  {
+    "animalId": 2,
+    "name": "Sakura Improved",
+    "description": "Cherry Pink and White Feathers",
+    "gender": "Female",
+    "age": 110.0,
+    "weight": 8.0
+  }
+```
+#### Response - the updated Animal object.
 ```
 {
-  "studentId":3,
-  "name":"Mister Updated",
-  "email":"bt@test.edu",
-  "major":"Computer Science",
-  "gpa":3.44
-}
-```
-#### Response - the updated Student object.
-```
-{
-  "studentId":3,
-  "name":"Mister Updated",
-  "email":"bt@test.edu",
-  "major":"Computer Science",
-  "gpa":3.44
+  "animalId": 2,
+  "name": "Sakura Improved",
+  "description": "Cherry Pink and White Feathers",
+  "gender": "Female",
+  "age": 110.0,
+  "weight": 8.0
 }
 ```
 
-8. ### [`/{studentId}`](http://localhost:8080/students/3) (DELETE)
-Delete an existing Student.
+8. ### [`/{animalId}`](http://localhost:8080/animals/3) (DELETE)
+Delete an existing Animal.
 
 #### Parameters
-- Path Variable: `studentId` &lt;integer&gt; - REQUIRED
+- Path Variable: `animalId` &lt;integer&gt; - REQUIRED
 
-#### Response - the updated list of Students.
+#### Response - the updated list of animals.
 ```
 [
   {
-    "studentId": 1,
-    "name": "John Doe",
-    "email": "jd@uncg.edu",
-    "major": "Computer Science",
-    "gpa": 3.5
+    "animalId": 0,
+    "name": "Rufus",
+    "description": "Furry, with brown spots\t",
+    "gender": "Male",
+    "age": 17.0,
+    "weight": 175.0
   },
   {
-    "studentId": 2,
-    "name": "Jane Smith",
-    "email": "js@uncg.edu",
-    "major": "Mathematics",
-    "gpa": 3.8
+    "animalId": 1,
+    "name": "Lizz",
+    "description": "Pine needle green scales",
+    "gender": "Female",
+    "age": 123.0,
+    "weight": 250.0
   }
 ]
 ```
