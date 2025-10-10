@@ -61,6 +61,12 @@ public class AnimalController {
         return animalService.getAnimalsByWeight(weight);
     }
 
+    /**
+     * Endpoint to get old animals with an age >= 100
+     * 
+     * @param age The age threshold for "old" animals
+     * @return list of animals with an age above the threshold
+     */
     @GetMapping("/animals/age")
     public Object getAnimalsByAge(@RequestParam(name = "age", defaultValue = "100") double age) {
         return new ResponseEntity<>(animalService.getAnimalsByAge(age), HttpStatus.OK);
