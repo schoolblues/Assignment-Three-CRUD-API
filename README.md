@@ -128,7 +128,7 @@ Gets a list of animals with a age meeting the Threshold.
   }
 ]
 ```
-6. ### [`/`](http://localhost:8080/animals) (POST)
+6. ### [`/animals`](http://localhost:8080/animals) (POST)
 Create  a new Animal entry
 
 #### Request Body
