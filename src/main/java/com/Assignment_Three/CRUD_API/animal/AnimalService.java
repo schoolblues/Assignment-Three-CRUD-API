@@ -37,4 +37,16 @@ public class AnimalService {
     public Object getAnimalsByAge(double age) {
         return animalRepository.getAnimalsByAge(age);
     }
+
+    public Animal addAnimal(Animal animal) {
+        return animalRepository.save(animal);
+    }
+
+    public Animal updateAnimal(Long animalId, Animal animal) {
+        return animalRepository.save(animal);
+    }
+
+    public void deleteAnimal(Long animalId) {
+        animalRepository.deleteById(animalId);
+    }
 }

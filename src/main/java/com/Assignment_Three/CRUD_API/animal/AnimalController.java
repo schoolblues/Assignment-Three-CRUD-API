@@ -1,8 +1,12 @@
 package com.Assignment_Three.CRUD_API.animal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -60,4 +64,20 @@ public class AnimalController {
         return animalService.getAnimalsByAge(age);
     }
 
+    @PostMapping("/animals")
+    public Object addAnimal(@RequestBody Animal animal) {
+        return animalService.addAnimal(animal);
+    }
+
+    @PutMapping("/animals/{id}")
+    public Animal updateAnimal(@PathVariable Long id, @RequestBody Animal animal) {
+        animalService.updateAnimal(id, animal);
+        return animalService.getAnimalsById(id);
+    }
+
+    @DeleteMapping("/animals/{id}")
+    public Object deleteAnimal(@PathVariable Long id) {
+        animalService.deleteAnimal(id);
+        return animalService.getAllAnimals();
+    }
 }
