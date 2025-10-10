@@ -25,8 +25,8 @@ public class AnimalController {
 
 
     @GetMapping("/animals/{id}")
-    public Animal getAnimalById(@PathVariable long id) {
-        return animalService.getAnimalById(id);
+    public Animal getAnimalsById(@PathVariable long id) {
+        return animalService.getAnimalsById(id);
     }
 
     @GetMapping("/animals/name")
@@ -34,13 +34,13 @@ public class AnimalController {
         if (key != null) {
             return animalService.getAnimalsByName(key);
         } else {
-            return animalService.getAllStudents();
+            return animalService.getAllAnimals();
         }
     }
 
     @GetMapping("/animals/description")
     public Object getAnimalsByDescription(@RequestParam String description) {
-        if (key != null) {
+        if (description != null) {
             return animalService.getAnimalsByDescription(description);
         } else {
             return animalService.getAllAnimals();
@@ -49,7 +49,7 @@ public class AnimalController {
 
         @GetMapping("/animals/gender")
     public Object getAnimalsByGender(@RequestParam String gender) {
-        if (key != null) {
+        if (gender != null) {
             return animalService.getAnimalsByGender(gender);
         } else {
             return animalService.getAllAnimals();
@@ -57,13 +57,13 @@ public class AnimalController {
     }
 
     @GetMapping("/animals/weight")
-    public Object getAnimalByWeight(@RequestParam double weight) {
-        return animalService.getAnimalByWeight(weight);
+    public Object getAnimalsByWeight(@RequestParam double weight) {
+        return animalService.getAnimalsByWeight(weight);
     }
 
     @GetMapping("/animals/age")
-    public Object getAnimalByAge(@RequestParam double age) {
-        return animalService.getAnimalByAge(age);
+    public Object getAnimalsByAge(@RequestParam double age) {
+        return animalService.getAnimalsByAge(age);
     }
 
 }
