@@ -26,6 +26,9 @@ Gets a list of all Animals in the database.
 
 #### Response - A JSON array of Animal objects.
 
+```
+```
+
 2. ### [`/{animalId}`](http://localhost:8080/animals/1) (GET)
 Gets an individual Animal in the system. Each Animal is identified by a numeric `animalId`
 
