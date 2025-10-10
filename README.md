@@ -95,21 +95,30 @@ Gets a list of animals with a name that contains the given string.
 ]
 ```
 
-4. ### [`/description/{description}`](http://localhost:8080/animals/description/{description}) (GET)
-Gets a description of an animal for a specific species.
+4. ### [`/weight`](http://localhost:8080/animals/weight?key=175) (GET)
+Gets an animal based on their weight.
 
 #### Parameters
-- path variable: `description` &lt; String &gt; - REQUIRED
+- path variable: `weight` &lt; Double &gt; - REQUIRED
 
 #### Response - A JSON array of animal objects.
 
 ```
+[
+  {
+    "animalId": 0,
+    "name": "Rufus",
+    "gender": "Male",
+    "age": 17.0,
+    "weight": 175.0
+  }
+]
 ```
 5. ### [`/age`](http://localhost:8080/animals/old?age=100) (GET)
 Gets a list of animals with a age meeting the Threshold.
 
 #### Parameters
-- query parameter: `age` &lt;Double&gt; - REQUIRED
+- query parameter: `age` &lt;Int&gt; - REQUIRED
 
 #### Response - A JSON array of Animal objects.
 
