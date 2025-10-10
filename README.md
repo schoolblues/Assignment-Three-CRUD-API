@@ -15,12 +15,6 @@ Simple CRUD API for Student Objects with JPA (Hibernate)
 - This project is built to run with jdk 21.
 - [Dependencies](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/e30190792a4c2d9c9eca5f951a2276c90cb02e6c/pom.xml#L32) to JPA and Postgres in addition to the usual Spring Web. JPA handles the persistence, Postgresql is the database to be used.
 - [`/src/main/resources/application.properties`](https://github.com/schoolblues/Assignment-Three-CRUD-API/blob/04eef4b02c55bb9d5b363fb189d47651bf4e9da3/src/main/resources/application.properties) This file has the configuration for the PostgreSQL database to use for the API.
-  - You MUST have the database up and running before running the project!
-    - Login to your neon.tech account.
-    - Locate your database project.
-    - On the project dashboard, click on "Connect" and select Java.
-    - Copy the connection string provided.
-    - Paste it as a value for the property `spring.datasource.url`. No quotation marks.
 - Build and run the main class. You should see a new table created in the Neon database.
 
 ## API Endpoints
