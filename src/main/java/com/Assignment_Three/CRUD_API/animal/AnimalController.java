@@ -1,6 +1,8 @@
 package com.Assignment_Three.CRUD_API.animal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,8 +62,8 @@ public class AnimalController {
     }
 
     @GetMapping("/animals/age")
-    public Object getAnimalsByAge(@RequestParam double age) {
-        return animalService.getAnimalsByAge(age);
+    public Object getAnimalsByAge(@RequestParam(name = "age", defaultValue = "100") double age) {
+        return new ResponseEntity<>(animalService.getAnimalsByAge(age), HttpStatus.OK);
     }
 
     @PostMapping("/animals")
