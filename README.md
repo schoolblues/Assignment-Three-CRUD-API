@@ -21,7 +21,7 @@ Simple CRUD API for Animal Objects with JPA (Hibernate)
 Base URL: [`http://localhost:8080/animals`](http://localhost:8080/animals)
 
 
-1. ### [`/`](http://localhost:8080/animals) (GET)
+1. ### [`/animals`](http://localhost:8080/animals) (GET)
 Gets a list of all Animals in the database.
 
 #### Response - A JSON array of Animal objects.
