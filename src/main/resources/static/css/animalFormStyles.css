@@ -1,0 +1,36 @@
+.formTitle {
+    padding-top: 10rem;
+    text-align: center;
+    color: white;
+    border: 1.5px solid white;
+    width: 100vw;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.form {
+    color: white;
+    display: flex;
+}
+
+input {
+    width: 600px;
+}
+.space {
+    margin-top: 4rem;
+    width: 600px;
+}
+
+.description {
+    margin-left: .5rem;
+}
+
+.description input {
+    width: 600px;
+    height: 300px;
+}
+
+.button {
+    margin-top: 4rem;
+}

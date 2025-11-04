@@ -1,0 +1,81 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color:#000000d8;
+    font-size: 2rem;
+}
+
+nav {
+    background: transparent;
+    position: fixed;
+    z-index: 1;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    text-align: center;
+    padding-left: 0;
+    border: 10px white solid;
+    border-width: 1.5px;
+    border-left: 0;
+    border-right: 0;
+    width: 100vw;
+    padding: 2rem;
+}
+
+nav li {
+    margin: .5rem;
+}
+
+nav a {
+    color: white;
+}
+
+.galleryMain { 
+    white-space: nowrap;
+}
+
+.galleryOkapi {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    color: white;
+}
+
+.galleryKomodo {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    color: white;
+}
+
+.gallerySun {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    color: white;
+}
+
+.galleryStand {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    color: white;
+}
+
+.galleryGiant {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    color: white;
+}
+
+.gallerySpider {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    color: white;   
+}
+
+.footer {
+    border: 100px solid black;
+    
+}

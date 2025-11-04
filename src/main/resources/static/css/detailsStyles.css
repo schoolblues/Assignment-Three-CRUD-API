@@ -1,0 +1,20 @@
+.detailsMain {
+    padding-top: 10rem;
+    white-space: nowrap;
+    text-align: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.description {
+    border: 1.5px solid white;
+    border-left: 0;
+    border-right: 0;
+    color: white;
+    margin: auto;
+    max-width: 600px;
+    height: 400px;
+}
