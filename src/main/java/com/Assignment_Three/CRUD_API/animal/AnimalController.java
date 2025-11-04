@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+import org.springframework.ui.Model;
+
 @Controller
 public class AnimalController {
 
@@ -19,22 +22,33 @@ public class AnimalController {
     private AnimalService animalService;
 
     @GetMapping("/animals")
-    public Object getAllAnimals() {
-        return animalService.getAllAnimals();
+    public Object getAllAnimals(Model model) {
+        // return animalService.getAllAnimals();
+        model.addAttribute("animalsList",animalService.getAllAnimals());
+        model.addAttribute("title", "All Animals");
+        return "index";
+
     }
 
 
     @GetMapping("/animals/{id}")
-    public Animal getAnimalsById(@PathVariable long id) {
-        return animalService.getAnimalsById(id);
+    public String getAnimalsById(@PathVariable long id, Model model) {
+        // return animalService.getAnimalsById(id);
+        model.addAttribute("animal", animalService.getAnimalsById(id));
+        model.addAttribute("title", "Animal #: " + id);
+        return "details";
     }
 
     @GetMapping("/animals/name")
-    public Object getAnimalsByName(@RequestParam String key) {
+    public Object getAnimalsByName(@RequestParam String key, Model model) {
         if (key != null) {
-            return animalService.getAnimalsByName(key);
+            // return animalService.getAnimalsByName(key);
+            model.addAttribute("animalsList", animalService.getAnimalsByName(key));
+            model.addAttribute("title", "Animals by name: " + key);
+            return "index";
         } else {
-            return animalService.getAllAnimals();
+            // return animalService.getAllAnimals();
+            return "redirect:/animals/";
         }
     }
 
