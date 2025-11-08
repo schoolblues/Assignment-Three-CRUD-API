@@ -24,8 +24,11 @@
         style="height: 100px; width: 100px;" alt="profile picture">
     </div>
     <div class="description">
+        <h1>Age</h1>
         <p>${animal.age}</p>
+        <h1>Weight</h1>
         <p>${animal.weight}</p>
+        <h1>Gender</h1>
         <p>${animal.gender}</p>
     </div>
 </body>
