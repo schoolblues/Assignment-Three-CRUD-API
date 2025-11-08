@@ -90,7 +90,7 @@ public class AnimalController {
     public Object addAnimal(Animal animal, @RequestParam MultipartFile picture) {
         //return animalService.addAnimal(animal);
         Animal newAnimal = animalService.addAnimal(animal, picture);
-        return "redirect:/animals" + newAnimal.getAnimalId();
+        return "redirect:/animals/" + newAnimal.getAnimalId();
     }
 
     @GetMapping("/animals/updateForm/{id}")
@@ -104,7 +104,7 @@ public class AnimalController {
     @PostMapping("/animals/update/{id}")
     public Object updateAnimal(@PathVariable Long id, @RequestBody Animal animal, @RequestParam MultipartFile picture) {
         animalService.updateAnimal(id, animal, picture);
-        return "redirect:/students" + id;
+        return "redirect:/animals/" + id;
     }
 
     @DeleteMapping("/animals/delete/{id}")

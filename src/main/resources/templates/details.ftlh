@@ -18,15 +18,15 @@
             <li><a href="/animals/updateForm">Update Animal</a></li>
         </ul>
     </nav>
-   
     <div class="detailsMain">
-        <p>Giant-Salamander</p>
-        <img src="images/GiantFiveResize.jpg" alt="">
+        <p>${animal.name}</p>
+        <img src="/profile-pictures/${(animal.profilePicturePath)!'avatar.png'}" class="card-img-top"
+        style="height: 100px; width: 100px;" alt="profile picture">
     </div>
     <div class="description">
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt a corrupti odio quia omnis aperiam veritatis enim, sapiente animi atque nulla rerum numquam doloribus reiciendis explicabo iusto! Dicta ex ab et fuga dolores, deleniti iusto sapiente, minima quos, repellat nulla quas rem voluptates soluta harum dignissimos facere minus! Qui, quisquam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quae architecto officia mollitia veniam impedit nostrum quasi. In minus quas deserunt et minima vitae maxime aperiam soluta debitis neque ut pariatur autem, tempora voluptas voluptate quasi odio veritatis voluptates culpa fugit modi officiis qui maiores laboriosam. Pariatur, dolorem velit minus sunt a saepe? Ex consectetur numquam debitis incidunt minus corporis voluptatibus ipsa at voluptatum nulla sapiente atque eum, consequuntur ratione explicabo accusantium maiores ullam alias magnam amet dolorum minima exercitationem laborum reiciendis. Cupiditate, minus veniam? Quidem explicabo recusandae magni velit obcaecati amet soluta adipisci culpa quaerat perferendis? Suscipit, impedit quos.
-        </p>
+        <p>${animal.age}</p>
+        <p>${animal.weight}</p>
+        <p>${animal.gender}</p>
     </div>
 </body>
 </html>

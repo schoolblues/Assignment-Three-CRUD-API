@@ -19,18 +19,12 @@
         </ul>
     </nav>
     <div class="formTitle">
-        <h1>Add New Animal</h1>
+        <h1>${title}</h1>
     </div>
     <div class="form">
-        <form>
+        <form id= action="/students" method="post" enctype="multipart/form-data>
             <label for="animalName">Animal Name</label><br>
             <input type="text" id="animalName" name="animalName"><br>
-            <div class="space"></div>
-            <label for="species">Animal Species</label><br>
-            <input type="text" id="species" name="species"><br>
-            <div class="space"></div>
-            <label for="dob">Date Of Birth</label><br>
-            <input type="text" id="dob" name="dob"><br>
             <div class="space"></div>
             <label for="animalWeight">Animal Weight</label><br>
             <input type="text" id="animalWeight" name="animalWeight"><br>
@@ -43,10 +37,8 @@
             <div class="space"></div>
             <label for="animalImage">Upload Image of Animal</label><br>
             <input type="file" id="picture" name="picture" required/>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
-    </div>
-    <div class="button">
-        <button>Submit</button>
     </div>
 </body>
 </html>
