@@ -73,20 +73,20 @@ public class AnimalService {
         try {
             if (originalFileName != null && originalFileName.contains(".")) {
                 String fileExtension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
-                String fileName = String.valueOf(newAnimal.getAnimalId()) + "." + fileExtension;
+                String fileName = String.valueOf(animalId) + "." + fileExtension;
                 Path filePath = Paths.get(UPLOAD_DIR + fileName);
 
                 InputStream inputStream = profilePicture.getInputStream();
 
                 Files.createDirectories(Paths.get(UPLOAD_DIR));
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-                newAnimal.setProfilePicturePath(fileName);
+                animal.setProfilePicturePath(fileName);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return animalRepository.save(newAnimal);
+        return animalRepository.save(animal);
     }
 
     public void deleteAnimal(Long animalId) {
