@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/animalFormStyles.css">
 </head>
 
 <body>
@@ -21,23 +22,27 @@
         </ul>
     </nav>
 
-  <div class="container" style="margin-top: 15px;">
+  <div class="container" style="padding-top: 90px">
     <h1>${title}</h1>
     <img src="/profile-pictures/${(animal.profilePicturePath)!'avatar.png'}" class="card-img-top"
       style="height: 100px; width: 100px;" alt="profile picture">
-    <form id="new-animal" action="/animals/update/${animal.animalId?c}" method="post" enctype="multipart/form-data">
-      <input type="text" id="animalId" name="animalId" value="${animal.animalId?c}" readonly />
-      <input type="text" id="name" name="name" value="${animal.name}" placeholder="Name" />
-      <input type="email" id="email" name="email" value="${animal.email}" placeholder="example@domain.edu" />
-      <input type="text" id="major" name="major" value="${animal.major}" placeholder="Major" />
-      <input type="number" id="gpa" name="gpa" step="0.01" value="${animal.gpa}" placeholder="GPA" /><br>
-      <label for="profilePicturePath" class="form-label">Current Picture</label>
-      <input type="text" id="profilePicturePath" name="profilePicturePath" value="${(animal.profilePicturePath)}" readonly />
-      <input type="file" id="picture" name="picture" />
-      <button type="submit" class="btn btn-primary">Save</button>
-      <a href="/animals/${animal.animalId?c}" class="btn btn-outline-danger">Cancel</a>
-    </form>
-
+    <div class="form">
+      <form id="new-animal" action="/animals/update/${animal.animalId?c}" method="post" enctype="multipart/form-data">
+        <label for="animalName">Animal Name</label><br>
+        <input type="text" id="animalName" name="animalName" value="${animal.name}" placeholder="Name" /><br>
+        <label for="animalAge">Animal Age</label><br>
+        <input type="text" id="animalAge" name="animalAge" value="${animal.age}" readonly /><br>
+        <label for="animalWeight">Animal Weight</label><br>
+        <input type="text" id="animalWeight" name="animalWeight" value="${animal.weight}" readonly /><br>
+        <label for="animalGender">Animal Gender</label><br>
+        <input type="text" id="animalGender" name="animalGender" value="${animal.gender}" readonly /><br>
+        <label for="profilePicturePath" class="form-label">Current Picture</label><br>
+        <input type="text" id="profilePicturePath" name="profilePicturePath" value="${(animal.profilePicturePath)}" readonly /><br>
+        <input type="file" id="picture" name="picture" /><br>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/animals/${animal.animalId?c}" class="btn btn-outline-danger">Cancel</a>
+      </form>
+  </div>
   </div>
 </body>
 
