@@ -18,3 +18,9 @@
     max-width: 600px;
     height: 400px;
 }
+
+.btn {
+    border: 1.5px solid white;
+    background-color: white;
+    border-radius: 5px;
+}
