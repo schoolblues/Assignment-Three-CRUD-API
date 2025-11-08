@@ -17,7 +17,7 @@ public class AnimalController {
     @Autowired
     private AnimalService animalService;
 
-    @GetMapping("/animals")
+    @GetMapping({"/animals", "/animals/"})
     public Object getAllAnimals(Model model) {
         // return animalService.getAllAnimals();
         model.addAttribute("animalsList",animalService.getAllAnimals());
