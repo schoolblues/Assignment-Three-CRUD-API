@@ -20,7 +20,7 @@
     </nav>
     <div class="detailsMain">
         <p>${animal.name}</p>
-        <img src="/profile-pictures/${(animal.profilePicturePath)!'avatar.png'}" class="card-img-top"
+        <img src="/profile-pictures/${(animal.profilePicturePath)}" class="card-img-top"
         style="height: 100px; width: 100px;" alt="profile picture">
     </div>
     <div class="description">
