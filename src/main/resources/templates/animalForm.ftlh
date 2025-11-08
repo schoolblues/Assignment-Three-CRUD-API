@@ -31,12 +31,17 @@
             <label for="dob">Date Of Birth</label><br>
             <input type="text" id="dob" name="dob"><br>
             <div class="space"></div>
+            <label for="animalWeight">Animal Weight</label><br>
+            <input type="text" id="animalWeight" name="animalWeight"><br>
+            <div class="space"></div>
+            <label for="animalAge">Animal Age</label><br>
+            <input type="text" id="animalAge" name="animalAge"><br>
+            <div class="space"></div>
+            <label for="animalGender">Animal Gender</label><br>
+            <input type="text" id="animalGender" name="animalGender"><br>
+            <div class="space"></div>
             <label for="animalImage">Upload Image of Animal</label><br>
-            <input type="text"  id="animalImage" name="animalImage"><br>
-        </form>
-        <form class="description">
-            <label for="description">Description</label><br>
-            <input type="text"  id="description" name="description">
+            <input type="file" id="picture" name="picture" required/>
         </form>
     </div>
     <div class="button">
