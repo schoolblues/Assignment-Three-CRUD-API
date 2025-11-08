@@ -93,8 +93,9 @@ public class AnimalController {
         return "redirect:/animals" + newAnimal.getAnimalId();
     }
 
-    @GetMapping("/animals/updateForm")
-    public Object updateForm(Animal animal, Model model) {
+    @GetMapping("/animals/updateForm/{id}")
+    public Object updateForm(@PathVariable Long id, Model model) {
+        Animal animal = animalService.getAnimalsById(id);
         model.addAttribute("animal", animal);
         model.addAttribute("title", "Update Animal: ");
         return "update";

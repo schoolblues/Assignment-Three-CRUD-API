@@ -68,7 +68,6 @@ public class AnimalService {
 
     public Animal updateAnimal(Long animalId, Animal animal, MultipartFile profilePicture) {
         //return animalRepository.save(animal);
-        Animal newAnimal = animalRepository.save(animal);
         String originalFileName = profilePicture.getOriginalFilename();
 
         try {
