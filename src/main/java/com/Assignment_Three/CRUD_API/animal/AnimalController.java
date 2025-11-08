@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 
 @Controller
@@ -53,13 +52,19 @@ public class AnimalController {
     }
 
     @GetMapping("/animals/gender/{gender}")
-    public Object getAnimalsByGender(@RequestParam String gender) {
-        return animalService.getAnimalsByGender(gender);
+    public Object getAnimalsByGender(@RequestParam String gender, Model model) {
+        //return animalService.getAnimalsByGender(gender);
+        model.addAttribute("animalList", animalService.getAnimalsByGender(gender));
+        model.addAttribute("title", "Animals by gender: " + gender);
+        return "index";
     }
 
     @GetMapping("/animals/weight")
-    public Object getAnimalsByWeight(@RequestParam double key) {
-        return animalService.getAnimalsByWeight(key);
+    public Object getAnimalsByWeight(@RequestParam double key, Model model) {
+        //return animalService.getAnimalsByWeight(key);
+        model.addAttribute("animalList", animalService.getAnimalsByWeight(key));
+        model.addAttribute("title", "Animals by weight: " + key);
+        return "index";
     }
 
     /**
@@ -69,24 +74,45 @@ public class AnimalController {
      * @return list of animals with an age above the threshold
      */
     @GetMapping("/animals/age")
-    public Object getAnimalsByAge(@RequestParam(name = "age", defaultValue = "100") int age) {
-        return new ResponseEntity<>(animalService.getAnimalsByAge(age), HttpStatus.OK);
+    public Object getAnimalsByAge(@RequestParam(name = "age", defaultValue = "100") int age, Model model) {
+        //return new ResponseEntity<>(animalService.getAnimalsByAge(age), HttpStatus.OK);
+        model.addAttribute("animalList", animalService.getAnimalsByAge(age));
+        model.addAttribute("title", "Animals over 100 years old: " + age);
+        return "index";
+    }
+
+    @GetMapping("/animals/createForm")
+    public Object createForm(Model model) {
+        Animal animal = new Animal();
+        model.addAttribute("animal", animal);
+        model.addAttribute("title", "Add new animal");
+        return "animalForm";
     }
 
     @PostMapping("/animals")
-    public Object addAnimal(@RequestBody Animal animal) {
-        return animalService.addAnimal(animal);
+    public Object addAnimal(Animal animal, @RequestParam MultipartFile picture) {
+        //return animalService.addAnimal(animal);
+        Animal newAnimal = animalService.addAnimal(animal, picture);
+        return "redirect:/animals" + newAnimal.getAnimalId();
     }
 
-    @PutMapping("/animals/{id}")
-    public Animal updateAnimal(@PathVariable Long id, @RequestBody Animal animal) {
-        animalService.updateAnimal(id, animal);
-        return animalService.getAnimalsById(id);
+    @GetMapping("/animals/updateForm/{id}")
+    public Object updateForm(@PathVariable Long id, Model model) {
+        Animal animal = animalService.getAnimalsById(id);
+        model.addAttribute("animal", animal);
+        model.addAttribute("title", "Update Animal: " + id);
+        return "animalsUpdate";
     }
 
-    @DeleteMapping("/animals/{id}")
+    @PostMapping("/animals/update/{id}")
+    public Object updateAnimal(@PathVariable Long id, @RequestBody Animal animal, @RequestParam MultipartFile picture) {
+        animalService.updateAnimal(id, animal, picture);
+        return "redirect:/students" + id;
+    }
+
+    @DeleteMapping("/animals/delete/{id}")
     public Object deleteAnimal(@PathVariable Long id) {
         animalService.deleteAnimal(id);
-        return animalService.getAllAnimals();
+        return "redirect:/animals";
     }
 }

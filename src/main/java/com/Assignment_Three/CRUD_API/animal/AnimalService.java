@@ -1,19 +1,22 @@
 package com.Assignment_Three.CRUD_API.animal;
 
-import java.io.IOException;
-import java.io.File;
-
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class AnimalService {
     
     @Autowired
     private AnimalRepository animalRepository;
+
+    private static final String UPLOAD_DIR = "src/main/resources/static/profile-pictures/";
 
     public Object getAllAnimals() {
         return animalRepository.findAll();
@@ -39,36 +42,55 @@ public class AnimalService {
         return animalRepository.getAnimalsByAge(age);
     }
 
-    public Animal addAnimal(Animal animal) {
-        return animalRepository.save(animal);
+    public Animal addAnimal(Animal animal, MultipartFile profilePicture) {
+        //return animalRepository.save(animal);
+        Animal newAnimal = animalRepository.save(animal);
+        String originalFileName = profilePicture.getOriginalFilename();
+
+        try {
+            if (originalFileName != null && originalFileName.contains(".")) {
+                String fileExtension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+                String fileName = String.valueOf(newAnimal.getAnimalId()) + "." + fileExtension;
+                Path filePath = Paths.get(UPLOAD_DIR + fileName);
+
+                InputStream inputStream = profilePicture.getInputStream();
+
+                Files.createDirectories(Paths.get(UPLOAD_DIR));
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+                newAnimal.setProfilePicturePath(fileName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return animalRepository.save(newAnimal);
     }
 
-    public Animal updateAnimal(Long animalId, Animal animal) {
-        return animalRepository.save(animal);
+    public Animal updateAnimal(Long animalId, Animal animal, MultipartFile profilePicture) {
+        //return animalRepository.save(animal);
+        Animal newAnimal = animalRepository.save(animal);
+        String originalFileName = profilePicture.getOriginalFilename();
+
+        try {
+            if (originalFileName != null && originalFileName.contains(".")) {
+                String fileExtension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+                String fileName = String.valueOf(newAnimal.getAnimalId()) + "." + fileExtension;
+                Path filePath = Paths.get(UPLOAD_DIR + fileName);
+
+                InputStream inputStream = profilePicture.getInputStream();
+
+                Files.createDirectories(Paths.get(UPLOAD_DIR));
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+                newAnimal.setProfilePicturePath(fileName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return animalRepository.save(newAnimal);
     }
 
     public void deleteAnimal(Long animalId) {
         animalRepository.deleteById(animalId);
-    }
-
-    public String writeJson(Animal animal) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            objectMapper.writeValue(new File("animals.json"), animal);
-            return "Animal written to JSON file successfully";
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "Error writing student to JSON file";
-        }
-    }
-
-    public Object readJson() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.readValue(new File("animals.json"), Animal.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 }
