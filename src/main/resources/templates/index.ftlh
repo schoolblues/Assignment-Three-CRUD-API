@@ -12,10 +12,11 @@
     <div class="galleryMain">
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/animals">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="animalForm.html">Animal form</a></li>
+                <li><a href="/animals/createForm">Animal form</a></li>
                 <li><a href="details.html">Details</a></li>
+                <li><a href="/animals/updateForm">Update Animal</a></li>
             </ul>
         </nav>
         <div class="galleryOkapi">

@@ -11,22 +11,15 @@
 <body>
 
   <!-- Begin Nav Bar -->
-  <nav class="navbar navbar-expand-lg  navbar-dark" style="background-color: #799351;">
-    <a class="navbar-brand" href="/animals" style="margin: 10px;">
-      <img src="/logo.jpg" alt="" width="80" height="60">
-    </a>
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/animals">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Second</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Third</a>
-      </li>
-    </ul>
-  </nav>
+  <nav>
+        <ul>
+            <li><a href="/animals">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="/animals/createForm">Animal form</a></li>
+            <li><a href="details.html">Details</a></li>
+            <li><a href="/animals/updateForm">Update Animal</a></li>
+        </ul>
+    </nav>
 
   <div class="container" style="margin-top: 15px;">
     <h1>${title}</h1>
