@@ -22,19 +22,15 @@
         <h1>${title}</h1>
     </div>
     <div class="form">
-        <form id= action="/students" method="post" enctype="multipart/form-data>
+        <form id="newAnimal" action="/animals" method="post" enctype="multipart/form-data">
             <label for="animalName">Animal Name</label><br>
             <input type="text" id="animalName" name="animalName"><br>
-            <div class="space"></div>
             <label for="animalWeight">Animal Weight</label><br>
             <input type="text" id="animalWeight" name="animalWeight"><br>
-            <div class="space"></div>
             <label for="animalAge">Animal Age</label><br>
             <input type="text" id="animalAge" name="animalAge"><br>
-            <div class="space"></div>
             <label for="animalGender">Animal Gender</label><br>
             <input type="text" id="animalGender" name="animalGender"><br>
-            <div class="space"></div>
             <label for="animalImage">Upload Image of Animal</label><br>
             <input type="file" id="picture" name="picture" required/>
             <button type="submit" class="btn btn-primary">Save</button>
